@@ -2,7 +2,7 @@ package com.example.barguel.dtos;
 
 import javax.validation.constraints.NotBlank;
 
-public class ClienteDTO {
+public class ClienteDto {
     @NotBlank
     private String nome;
     @NotBlank
