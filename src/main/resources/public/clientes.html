@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Barguel | Clientes</title>
+  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="bg-gray-900">
+<section>
+  <div class="w-full max-w-7xl">
+    <div x-data="{ open: false }"
+         class="flex flex-col max-w-screen-xl p-5 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+      <div class="flex flex-row items-center justify-between lg:justify-start">
+        <a href="index.html"
+           class="text-lg font-bold tracking-tighter text-amber-500 transition duration-500 ease-in-out transform tracking-relaxed lg:pr-8">
+          Barguel
+        </a>
+        <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline"
+                @click="open = !open"></button>
+      </div>
+      <nav :class="{'flex': open, 'hidden': !open}"
+           class="flex-col flex-grow hidden md:flex md:justify-start md:flex-row">
+        <ul class="space-y-2 list-none lg:space-y-0 lg:items-center lg:inline-flex">
+          <li>
+            <a href="index.html" type="button" id="btnBarcos"
+               class="px-2 lg:px-6 py-6 text-sm border-b-2 border-transparent hover:border-amber-600 leading-[22px] md:px-3 text-gray-500 hover:text-amber-500">
+              Barcos
+            </a>
+          </li>
+          <li>
+            <a href="clientes.html" type="button" id="btnClientes"
+               class="px-2 lg:px-6 py-6 text-sm border-b-2 border-transparent hover:border-amber-600 leading-[22px] md:px-3 text-gray-500 hover:text-amber-500">
+              Clientes
+            </a>
+          </li>
+          <li>
+            <a href="alugueis.html" type="button" id="btnAlugueis"
+               class="px-2 lg:px-6 py-6 text-sm border-b-2 border-transparent hover:border-amber-600 leading-[22px] md:px-3 text-gray-500 hover:text-amber-500">
+              Alugueis
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <a href="login.html" type="button" id="btnLogin">
+        <button type="button"
+                class="text-dark bg-amber-500 hover:bg-amber-500 focus:outline-none focus:ring-4 focus:ring-amber-500 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-amber-500">
+          Login e Registro
+        </button>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="relative items-center w-full px-5 py-6 mx-auto md:px-12 lg:px-16 max-w-7xl lg:py-12">
+    <section>
+      <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 md:px-12 lg:px-24 lg:py-12">
+        <div class="flex justify-center">
+          <button type="button" id="btnAddCliente" data-modal-toggle="modalCliente"
+                  class="text-dark bg-amber-500 hover:bg-amber-500 focus:outline-none focus:ring-4 focus:ring-amber-500 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-amber-500">
+            Adicionar Cliente
+          </button>
+        </div>
+        <h2
+                class="max-w-3xl py-6 text-lg leading-none tracking-tighter text-neutral-600 md:text-lg lg:text-2xl lg:max-w-1xl">
+          Nossos <span class="text-amber-500">clientes</span>:
+        </h2>
+        <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+          <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400">
+            <thead
+                    class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="py-3 px-6">Nome</th>
+              <th scope="col" class="py-3 px-6">CPF</th>
+              <th scope="col" class="py-3 px-6">Email</th>
+              <th scope="col" class="py-3 px-6">Arrais Amador</th>
+              <th scope="col" class="py-3 px-6">Operação</th>
+
+            </tr>
+            </thead>
+            <tbody id="clientesTable">
+            <!-- Data -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="modalCliente" tabindex="-1" aria-hidden="true"
+       class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full">
+    <div class="relative w-full max-w-md h-full md:h-auto">
+      <!-- Modal content -->
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div class="py-6 px-6 lg:px-8">
+          <form class="space-y-6" action="#" id="modal-form">
+            <input id="clienteId" type="hidden">
+            <input id="typeOfOperation" type="hidden" value="CREATE">
+
+            <div>
+              <label for="nome"
+                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
+              <input type="text" name="nome" id="nome"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                     required>
+            </div>
+            <div>
+              <label for="cpf"
+                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CPF</label>
+              <input type="text" name="cpf" id="cpf"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                     required>
+            </div>
+            <div>
+              <label for="email"
+                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+              <input type="email" name="email" id="email"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                     required>
+            </div>
+            <div>
+              <label for="arrais"
+                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Arrais
+                Amador</label>
+              <input type="text" name="arrais" id="arrais"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                     required>
+            </div>
+            <button type="submit"
+                    class="w-full text-white bg-amber-700 hover:bg-amber-800 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-amber-600 dark:hover:bg-amber-700 dark:focus:ring-amber-800">Salvar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <footer class="bg-slate-800">
+    <div class="px-5 py-12 mx-auto max-w-7xl sm:px-6 md:flex md:items-center md:justify-between lg:px-20">
+      <div class="mt-8 md:mt-0 md:order-1">
+                    <span class="mt-2 text-sm font-light text-gray-500">
+                        Diego Pagotto e Ingrid Nery- IFSP - 2022 - Programação Web 3
+                        <br />
+                        <small>Created using TailWind CSS</small>
+                    </span>
+      </div>
+    </div>
+  </footer>
+</section>
+<script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+</body>
+
+</html>
