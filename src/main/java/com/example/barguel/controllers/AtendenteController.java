@@ -24,8 +24,9 @@ public class AtendenteController {
     public ResponseEntity<Object> saveAtendente(@Valid @RequestBody AtendenteDto atendenteDto){
         var atendenteModel = new AtendenteModel();
         BeanUtils.copyProperties(atendenteDto, atendenteModel);
-        if(atendenteService.checkIfExists(atendenteModel.getUsername()))
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Usuário já existe");
+
+//        if(atendenteService.checkIfExists(atendenteModel.getUsername()))
+//            return ResponseEntity.status(HttpStatus.CONFLICT).body("Usuário já existe");
         return ResponseEntity.status(HttpStatus.CREATED).body(atendenteService.save(atendenteModel));
     }
 
